@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
+  @Input() messageFromParent: string = ''; // Recibe datos del padre
+  @Output() messageToParent: EventEmitter<string> = new EventEmitter(); // Emite eventos al padre
+
+  sendMessage() {
+    this.messageToParent.emit('Mensaje enviado desde el hijo al padre.');
+  }
 
 }

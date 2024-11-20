@@ -1,1 +1,117 @@
+<!-- Mensaje entre componentes -->
+<app-header [messageFromParent]="messageToChild" 
+(messageToParent)="handleChildMessage($event)"></app-header>
 <p>home works!</p>
+
+<div>
+  <h2>Componente Padre</h2>
+  <p>Mensaje del hijo: {{ messageFromChild }}</p>
+  
+</div>
+
+<!-- Mensaje entre componentes -->
+
+<h1>Ejemplo NgFor, NgIf y NgClass</h1>
+<ul>
+    <li *ngFor="let user of users">
+      <div *ngIf="user.id" [ngClass]="{'exist': user.id==3}" class="claseAparte">
+        <p>{{ user.name }} - {{ user.email }}</p>
+      </div>
+    </li>
+  </ul>
+
+  <h1>Ejemplo form y validator</h1>
+  <div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <!-- Campo de nombre -->
+      <div>
+        <label for="name">Nombre:</label>
+        <input id="name" formControlName="name" />
+        <div *ngIf="myForm.get('name')?.touched && myForm.get('name')?.invalid">
+          <small *ngIf="myForm.get('name')?.hasError('required')">El nombre es obligatorio.</small>
+        </div>
+      </div>
+  
+      <!-- Campo de email -->
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" />
+        <div *ngIf="myForm.get('email')?.touched && myForm.get('email')?.invalid">
+          <small *ngIf="myForm.get('email')?.hasError('required')">El email es obligatorio.</small>
+          <small *ngIf="myForm.get('email')?.hasError('email')">El formato del email no es válido.</small>
+        </div>
+      </div>
+  
+      <!-- Botón de envío -->
+      <button type="submit" [disabled]="myForm.invalid">Enviar</button>
+    </form>
+  </div>
+
+  <h1>Ejemplo ngModel</h1>
+  <form (ngSubmit)="onSubmit2()">
+    <!-- Campo de primer nombre -->
+    <div>
+      <label for="firstName">Primer Nombre:</label>
+      <input 
+        type="text" 
+        id="firstName" 
+        name="firstName"
+        [(ngModel)]="firstName"  
+        required
+      />
+      <!-- Mensaje de error -->
+      <div *ngIf="firstName?.length === 0 ">
+        <small class="error">El primer nombre es obligatorio.</small>
+      </div>
+    </div>
+
+    Nombre: {{firstName}}
+  
+    <!-- Campo de apellido -->
+    <div>
+      <label for="lastName">Apellido:</label>
+      <input 
+        type="text" 
+        id="lastName" 
+        name="lastName" 
+        [(ngModel)]="lastName" 
+        required
+      />
+      <!-- Mensaje de error -->
+      <div *ngIf="lastName?.length === 0 ">
+        <small class="error">El apellido es obligatorio.</small>
+      </div>
+    </div>
+  
+    <!-- Campo de correo electrónico -->
+    <div>
+      <label for="userEmail">Correo Electrónico:</label>
+      <input 
+        type="email" 
+        id="userEmail" 
+        name="userEmail" 
+        [(ngModel)]="userEmail"
+        required
+        email
+      />
+      
+      <!-- Mensaje de error -->
+      <div *ngIf="userEmail?.length === 0 ">
+        <small class="error">El correo electrónico es obligatorio.</small>
+      </div>
+      <div *ngIf="userEmail && !userEmail.includes('@') ">
+        <small class="error">El formato del correo electrónico no es válido.</small>
+      </div>
+    </div>
+
+
+  
+    <!-- Botón de enviar -->
+    <button type="submit" [disabled]="!firstName || !lastName || !userEmail">Enviar</button>
+  </form>
+
+ 
+  
+  
+  
+  
