@@ -8,6 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';  
 import { FormsModule } from '@angular/forms';  // Importa FormsModule para usar ngModel
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import { FormsModule } from '@angular/forms';  // Importa FormsModule para usar 
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    PrimeNgModule
   ],
   providers: [],
   bootstrap: [AppComponent]

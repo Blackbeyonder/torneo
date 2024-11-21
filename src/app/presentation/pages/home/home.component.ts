@@ -3,23 +3,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { UserService } from '../../../services/users.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
 
   users: any[] = []; // Lista de usuarios
   myForm: FormGroup;
 
-  // Variables que estarán enlazadas con ngModel
-  firstName: string = '';
-  lastName: string = '';
-  userEmail: string = '';
+  images: any[] = ["https://imgjugadores.s3.us-east-1.amazonaws.com/estaticas/HeroBanner/HERO-BANNER-2.jpg","https://imgjugadores.s3.us-east-1.amazonaws.com/estaticas/HeroBanner/HERO-BANNER-2.jpg"];
 
-  messageToChild: string = 'Hola desde el padre!';
-  messageFromChild: string = '';
+    responsiveOptions: any[] = [
+        {
+            breakpoint: '1024px',
+            numVisible: 1
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 1
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1
+        }
+    ];
+
+
 
   constructor(private userService: UserService, private fb: FormBuilder) { //Inyeccion siempre en privado
      this.myForm = this.fb.group({
@@ -54,18 +66,6 @@ async getUsers(): Promise<void> {
     }
   }
 
-   // Método para manejar el envío del formulario
-  onSubmit2() {
-    if (this.firstName && this.lastName && this.userEmail) {
-      console.log('Formulario enviado correctamente:', { firstName: this.firstName, lastName: this.lastName, userEmail: this.userEmail });
-    } else {
-      console.log('Formulario con errores');
-    }
-  }
-
-  handleChildMessage(message: string) {
-    this.messageFromChild = message;
-  }
-
+ 
 
 }
