@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Events } from 'src/app/models/tournaments';
 import { HomeService } from 'src/app/services/home.service';
-
+import { Table } from 'primeng/table';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -13,6 +13,9 @@ export class AdminComponent {
 
 
   tournaments: Events = { rts: [], pelea: [] };
+  @ViewChild('dt1') dt1!: Table;
+  // Valor del filtro que se muestra en el input
+  searchText: string = '';
 
   constructor(private homeService: HomeService){}
 
@@ -20,6 +23,14 @@ export class AdminComponent {
     this.getTournaments();
    
    
+   
+  }
+
+  ngAfterViewInit(): void {
+    // Aplica el filtro al inicializar la vista
+    if (this.dt1) {
+      this.dt1.filterGlobal(this.searchText, 'contains');
+    }
   }
 
   async getTournaments(): Promise<void> {
@@ -36,6 +47,11 @@ export class AdminComponent {
       this.tournaments = { rts: [], pelea: [] }; // Estructura válida
       console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
     } 
+  }
+
+  onFilterGlobal(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.dt1.filterGlobal(input.value, 'contains');
   }
 
 }
