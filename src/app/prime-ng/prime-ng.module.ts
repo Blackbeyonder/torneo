@@ -5,20 +5,24 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { GalleriaModule } from 'primeng/galleria';
 
+import { PasswordModule } from 'primeng/password'; // Si deseas usar Password de PrimeNG
+
 @NgModule({
   imports: [
     ButtonModule,
     TableModule,
     InputTextModule,
     DropdownModule,
-    GalleriaModule
+    GalleriaModule,
+    PasswordModule
   ],
   exports: [
     ButtonModule,
     TableModule,
     InputTextModule,
     DropdownModule,
-    GalleriaModule
+    GalleriaModule,
+    PasswordModule
   ]
 })
 export class PrimeNgModule {}

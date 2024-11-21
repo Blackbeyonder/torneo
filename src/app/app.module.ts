@@ -13,6 +13,8 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { DetailComponent } from './presentation/pages/detail/detail.component';
+import { LoginComponent } from './presentation/pages/login/login.component';
+import { AdminComponent } from './presentation/pages/admin/admin.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { DetailComponent } from './presentation/pages/detail/detail.component';
     HomeComponent,
     FooterComponent,
     DetailComponent,
+    LoginComponent,
+    AdminComponent,
     
   ],
   imports: [

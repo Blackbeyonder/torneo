@@ -1,0 +1,31 @@
+<div class="flex flex-column justify-content-center align-items-center surface-400 min-h-screen px-3">
+    <div class="card p-fluid" style="max-width: 400px; width: 100%;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="my-3">
+                <label for="user" class="mr-3">User</label>
+                <div>
+                    <input id="user" formControlName="user" type="text" class="p-inputtext w-full" placeholder="Enter user" />
+                    <div *ngIf="loginForm.get('user')?.touched && loginForm.get('user')?.hasError('required')" class="p-error">
+                        Username is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-3">
+                <label for="password" class="mr-3">Password</label>
+                <div>
+                    <input id="password" formControlName="password" type="password" class="p-inputtext w-full" placeholder="Enter password" />
+                    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')" class="p-error">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-d-flex p-jc-center">
+                <p-button label="Login" type="submit" [disabled]="loginForm.invalid"></p-button>
+            </div>
+
+        </form>
+    </div>
+</div>
