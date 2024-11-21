@@ -1,0 +1,110 @@
+{
+  "rts": [
+    {
+      "id": 1,
+      "name": "Warcraft 3 reforged",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "exWolf",
+        "Artas666",
+        "Melinadark99",
+        "reyExanime3"
+      ],
+      "img":"https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt1953c897e611639b/67325d79d32591b8409e778b/Feature1_Reforged_20_Patch.png?imwidth=1088&imdensity=1"
+    },
+    {
+      "id": 2,
+      "name": "Starcraft 2",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "KerriganQueen",
+        "PorAuir55",
+        "DarkReynor",
+        "wowowcraft"
+      ],
+      "img":"https://bnetcmsus-a.akamaihd.net/cms/blog_header/2g/2G4VZH5TIWJF1602720144046.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Age of empires 2 definitive edition",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "Leonidas44",
+        "DarkReynor33",
+        "wowowcraft234324",
+        "666Spartan"
+      ],
+      "img":"https://i.blogs.es/33f12c/age-of-empires-ii-remastered-4k7/1366_2000.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Age of Mithologies: Retold",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "Leon333idas44",
+        "DarkR32432eynor33",
+        "wowofdfdswcraft234324",
+        "662343246Spartan"
+      ],
+      "img":"https://i.blogs.es/c0ebf0/age-of-mytology-retold/1200_800.jpeg"
+    }
+  ],
+  "pelea":[
+    {
+      "id": 1,
+      "name": "KOF 98",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "KYO667",
+        "Iori666",
+        "AthenaEscondido03",
+        "MaxxximunImpact"
+      ],
+      "img":"https://www.snk-corp.co.jp/es-es/games/kof-portal/series/98/img/98umsub.jpg"
+    },
+    {
+      "id": 2,
+      "name": "marvel vs capcom 2",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "ElHulk",
+        "Spiderman2099",
+        "AthenaEscondido03",
+        "MaxxximunImpact"
+      ],
+      "img":"https://es.gizmodo.com/app/uploads/2024/06/072c6eb2f94eae547ccc5378473047f8-680x383.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Tekken 6",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "El55Hulk",
+        "Spide546rman2099",
+        "Cablex456546Deadpool",
+        "Krak88867en33"
+      ],
+      "img":"https://image.api.playstation.com/vulcan/ap/rnd/202310/0605/29972c2e94e6d37bfae4cf2a3c697443b5cfa3ee11769b5d.jpg?w=1920&thumb=false"
+    },
+    {
+      "id": 4,
+      "name": "Street Fighter 2",
+      "date": "20/11/25",
+      "ubication": "CDMX",
+      "Participantes": [
+        "Ryu001",
+        "Ken22",
+        "Theshoryuken",
+        "32322Fighter"
+      ],
+      "img":"https://www.infobae.com/resizer/v2/GT6MLMOVJZFBTG6N6CIASFGJA4.jpg?auth=c03c2a9843478f6e55d99664da1bb5419b57966496f115bc86f2a355799268b0&smart=true&width=992&height=558&quality=85"
+    }
+  ]
+}

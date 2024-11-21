@@ -1,17 +1,68 @@
-<!-- Mensaje entre componentes -->
+
 <app-header></app-header>
-<p>home works!</p>
 
-<p-galleria 
-  [value]="images" 
-  [showItemNavigators]="true" 
-  [showThumbnails]="false" 
-  [showIndicators]="true" 
-  [showIndicatorsOnItem]="true" 
-  [responsiveOptions]="responsiveOptions" 
-  [containerStyle]="{ 'max-width': '640px', 'margin-top':'2em' }"> 
+<div>
+  <owl-carousel-o [options]="customOptions" >
+    <ng-template carouselSlide *ngFor="let item of images">
+      <img [src]="item.url" alt="" class="h-10rem sm:h-15rem md:h-20rem lg:h-25rem xl:h-30rem">
+    </ng-template> 
+  </owl-carousel-o>
+</div>
 
-  <ng-template pTemplate="item" let-item>
-      <img [src]="item" style="width: 100%; display: block;" />
-  </ng-template>
-</p-galleria>
+
+<div class="flex flex-column mt-5 pt-5">
+  <div class="mb-5 mx-1">
+    <div class="font-bold text-xl mb-4">Torneos RTS</div>
+    <owl-carousel-o [options]="customOptions2" >
+      <ng-template carouselSlide *ngFor="let item of tournaments.rts" >
+        <div class=" flex flex-column  mr-3 mb-1 shadow-2 border-round-xl  ">
+          <div    [style]="{
+            'width': '100%',
+            'height': '200px',
+            'background-image': 'url(' + item.img + ')',
+            'background-size': 'cover',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat'
+          }" class="border-round-top-xl fish-eye"></div>
+          <div class="p-2">
+            <div class="font-bold">{{item.name}}</div>
+          <div class="text-normal">Fecha: {{item.date}}</div>
+          <div class="flex justify-content-center ">
+            <p-button label="Detalle" [outlined]="true" (click)="goToDetail('rts',item.id)"></p-button>
+          </div>
+          </div>
+
+        </div>
+      </ng-template> 
+    </owl-carousel-o>
+  </div>
+  <div class="mb-5 mx-1 ">
+    <div class="font-bold text-xl mb-4">Torneos de juegos de pelea</div>
+    <owl-carousel-o [options]="customOptions2" >
+      <ng-template carouselSlide *ngFor="let item of tournaments.pelea" >
+        <div class=" flex flex-column  mr-3 mb-1 shadow-2 border-round-xl ">
+          <div    [style]="{
+            'width': '100%',
+            'height': '200px',
+            'background-image': 'url(' + item.img + ')',
+            'background-size': 'cover',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat'
+          }" class="border-round-top-xl fish-eye"></div>
+          <div class="p-2">
+            <div class="font-bold">{{item.name}}</div>
+          <div class="text-normal">Fecha: {{item.date}}</div>
+          <div class="flex justify-content-center ">
+            <p-button label="Detalle" [outlined]="true" (click)="goToDetail('pelea',item.id)"></p-button>
+          </div>
+          </div>
+
+        </div>
+      </ng-template> 
+    </owl-carousel-o>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+

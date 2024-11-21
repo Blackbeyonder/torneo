@@ -10,14 +10,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';  // Importa FormsModule para usar ngModel
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { DetailComponent } from './presentation/pages/detail/detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    DetailComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,9 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    CarouselModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

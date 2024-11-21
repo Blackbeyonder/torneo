@@ -3,3 +3,10 @@
 @import "primeng/resources/primeng.css";
 
 @import "primeicons/primeicons.css";
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+body{
+    margin: 0;
+}
