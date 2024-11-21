@@ -18,4 +18,8 @@ export class DetailComponent {
     console.log('recibida:', this.category, this.id);
   }
 
+  redirectTo(Where:string){
+    
+  }
+
 }
