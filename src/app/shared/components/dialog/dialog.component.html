@@ -17,6 +17,8 @@
           <small *ngIf="myForm.get('date')?.hasError('required')">La fecha es obligatoria.</small>
         </div>
       </div>
+
+      
   
       <!-- Ubicación -->
       <div class="w-full">
@@ -24,6 +26,14 @@
         <input id="location" formControlName="location" class="p-inputtext w-full" />
         <div *ngIf="myForm.get('location')?.invalid && myForm.get('location')?.touched" class="text-red-500">
           <small *ngIf="myForm.get('location')?.hasError('required')">La ubicación es obligatoria.</small>
+        </div>
+      </div>
+
+      <div class="w-full">
+        <label for="date" class="block">Participantes (Apreta enter)</label>
+        <p-chips formControlName="participants"></p-chips>
+        <div *ngIf="myForm.get('participants')?.invalid && myForm.get('participants')?.touched" class="text-red-500">
+          <small *ngIf="myForm.get('participants')?.hasError('required')">Paricipantes es obligatorio.</small>
         </div>
       </div>
   

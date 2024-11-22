@@ -13,6 +13,7 @@ export class DialogComponent {
     name: ['', Validators.required],  // Campo obligatorio
     date: ['', Validators.required],  // Campo obligatorio
     location: ['', Validators.required],  // Campo obligatorio
+    participants: ['', Validators.required],  // Campo obligatorio
     urlImg: ['', [Validators.required, Validators.pattern('https?://.+')]]  // Campo obligatorio y validación de URL
   });
 
@@ -25,6 +26,8 @@ export class DialogComponent {
   item: any = {}; // Para almacenar los datos pasados
 
   today: Date = new Date();  
+
+  values:string="";
 
   constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private fb: FormBuilder) {}
 

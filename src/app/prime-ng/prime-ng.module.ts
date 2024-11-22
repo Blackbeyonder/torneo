@@ -8,6 +8,7 @@ import { PasswordModule } from 'primeng/password';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog'; // Asegúrate de importar DialogService
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
+import { ChipsModule } from 'primeng/chips';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CalendarModule } from 'primeng/calendar';
     PasswordModule,
     DialogModule,
     DynamicDialogModule,
-    CalendarModule
+    CalendarModule,
+    ChipsModule
   ],
   exports: [
     ButtonModule,
@@ -30,7 +32,8 @@ import { CalendarModule } from 'primeng/calendar';
     PasswordModule,
     DialogModule,
     DynamicDialogModule,
-    CalendarModule
+    CalendarModule,
+    ChipsModule
   ],
   providers: [DialogService],  // Agrega DialogService aquí
 })
