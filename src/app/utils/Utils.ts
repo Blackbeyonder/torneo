@@ -12,6 +12,20 @@ export class Utils {
     router.navigate([route]);
   }
 
+  static convertDateToDMY(dateString: string): string {
+    const date = new Date(dateString);  // Convierte el string a un objeto Date
+    
+    // Obtenemos el día, el mes y el año
+    const day = date.getDate().toString().padStart(2, '0');  // Aseguramos que tenga dos dígitos
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes es 0-indexed, así que sumamos 1
+    const year = date.getFullYear().toString().slice(-2);  // Tomamos los últimos 2 dígitos del año
+    
+    // Formato final "día/mes/año"
+    return `${day}/${month}/${year}`;
+  }
+  
+  
+
 
 }
 
