@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { ApiResponse } from 'src/app/models/apiResponse';
 import { Torneo } from 'src/app/models/torneo';
@@ -16,7 +16,7 @@ export class DetailComponent {
   info: Torneo = new Torneo();
   participantes:string[]=[];
 
-  constructor(private route: ActivatedRoute, private detailService: DetailService) { }
+  constructor(private route: ActivatedRoute, private detailService: DetailService, private router1: Router) { }
 
   ngOnInit(): void {
     // Obtener el parámetro 'category' directamente usando snapshot
@@ -40,11 +40,16 @@ export class DetailComponent {
 
     try {
       let response: ApiResponse<Torneo> = await lastValueFrom(this.detailService.getDetail(newCategoty, this.id));
+      
       if (response.message && response.message == "success") {
         this.info = response.data;
         this.participantes = this.info && this.info.participantes ? this.info.participantes.split(',').map(item => item.trim()):[];
         
 
+      }
+
+      if(response.error=="Torneo no encontrado"){
+        this.router1.navigate(['/']);
       }
 
     } catch (error) {
