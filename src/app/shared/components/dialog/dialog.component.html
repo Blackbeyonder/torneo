@@ -1,27 +1,51 @@
-<div class="flex flex-wrap gap-4">
-    <div class="w-full ">
-      <label for="name" class="block">Nombre</label>
-      <input id="name" [(ngModel)]="name" class="p-inputtext w-full" />
-    </div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-wrap gap-4">
+      <!-- Nombre -->
+      <div class="w-full">
+        <label for="name" class="block">Nombre</label>
+        <input id="name" formControlName="name" class="p-inputtext w-full" />
+        <div *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched" class="text-red-500">
+          <small *ngIf="myForm.get('name')?.hasError('required')">El nombre es obligatorio.</small>
+        </div>
+      </div>
   
-    <div class="w-full ">
-      <label for="date" class="block">Fecha</label>
-      <p-calendar [(ngModel)]="date" appendTo="body" class="w-full"></p-calendar>
-    </div>
+      <!-- Fecha -->
+      <div class="w-full">
+        <label for="date" class="block">Fecha</label>
+        <p-calendar formControlName="date" appendTo="body" class="w-full" [minDate]="today"></p-calendar>
+        <div *ngIf="myForm.get('date')?.invalid && myForm.get('date')?.touched" class="text-red-500">
+          <small *ngIf="myForm.get('date')?.hasError('required')">La fecha es obligatoria.</small>
+        </div>
+      </div>
   
-    <div class="w-full ">
-      <label for="location" class="block">Ubicación</label>
-      <input id="location" [(ngModel)]="location" class="p-inputtext w-full" />
-    </div>
+      <!-- Ubicación -->
+      <div class="w-full">
+        <label for="location" class="block">Ubicación</label>
+        <input id="location" formControlName="location" class="p-inputtext w-full" />
+        <div *ngIf="myForm.get('location')?.invalid && myForm.get('location')?.touched" class="text-red-500">
+          <small *ngIf="myForm.get('location')?.hasError('required')">La ubicación es obligatoria.</small>
+        </div>
+      </div>
   
-    <div class="w-full ">
-      <label for="urlImg" class="block">Url imagen</label>
-      <input id="urlImg" [(ngModel)]="urlImg" class="p-inputtext w-full" />
-    </div>
+      <!-- URL Imagen -->
+      <div class="w-full">
+        <label for="urlImg" class="block">Url imagen</label>
+        <input id="urlImg" formControlName="urlImg" class="p-inputtext w-full" />
+        <div *ngIf="myForm.get('urlImg')?.invalid && myForm.get('urlImg')?.touched" class="text-red-500">
+          <small *ngIf="myForm.get('urlImg')?.hasError('required')">La URL de la imagen es obligatoria.</small>
+          <small *ngIf="myForm.get('urlImg')?.hasError('pattern')">La URL debe ser válida.</small>
+        </div>
+      </div>
   
-    <div class="w-full flex gap-2">
-        <div><p-button label="Guardar" severity="success"></p-button></div>
-        <div><p-button label="Borrar" severity="danger" (click)="closeDialog()"></p-button></div>
+      <!-- Botones -->
+      <div class="w-full flex gap-2">
+        <div>
+          <p-button label="Guardar" severity="success" type="submit"></p-button>
+        </div>
+        <div>
+          <p-button label="Borrar" severity="danger" (click)="closeDialog()"></p-button>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
   

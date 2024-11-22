@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -8,18 +9,31 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 })
 export class DialogComponent {
 
+  myForm: FormGroup = this.fb.group({
+    name: ['', Validators.required],  // Campo obligatorio
+    date: ['', Validators.required],  // Campo obligatorio
+    location: ['', Validators.required],  // Campo obligatorio
+    urlImg: ['', [Validators.required, Validators.pattern('https?://.+')]]  // Campo obligatorio y validación de URL
+  });
+
+  date: Date = new Date(); 
   name: string = '';
-  date: string = '';
   location: string = '';
   urlImg: string = '';
 
   isEdit: boolean = false;
   item: any = {}; // Para almacenar los datos pasados
 
+  today: Date = new Date();  
 
-  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig) {}
+  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.today.setHours(0, 0, 0, 0); // Asegurar que la fecha esté limpia
+
+    // Si deseas establecer un valor inicial para `date`, puedes hacerlo aquí:
+    this.date = this.today;  
+
     // Acceder a los datos enviados al abrir el diálogo desde `this.ref.data`
     const dialogData = this.config.data;
     console.log(dialogData);
@@ -41,13 +55,31 @@ export class DialogComponent {
   }
 
   saveTournament() {
-    if (this.isEdit) {
-      // Lógica para editar el torneo
-      console.log('Editing Tournament:', this.name, this.date, this.location, this.urlImg);
+    if (this.myForm.valid) {
+      // Si el formulario es válido, procesamos los datos
+      const formData = this.myForm.value;
+      if (this.isEdit) {
+        // Lógica para editar el torneo
+        console.log('Editing Tournament:', formData);
+      } else {
+        // Lógica para crear un nuevo torneo
+        console.log('Creating Tournament:', formData);
+      }
+      // Aquí podrías llamar a un servicio para guardar los datos
+      this.closeDialog(); // Cerrar el diálogo después de guardar
     } else {
-      // Lógica para crear un nuevo torneo
-      console.log('Creating Tournament:', this.name, this.date, this.location, this.urlImg);
+      console.log('Formulario inválido');
+      // Aquí puedes mostrar un mensaje o resaltar los errores
     }
   }
 
+  onSubmit() {
+    if (this.myForm.valid) {
+      // Si el formulario es válido, guardar
+      this.saveTournament();
+    } else {
+      // Si el formulario es inválido, resaltar los errores
+      console.log('Formulario inválido');
+    }
+  }
 }
