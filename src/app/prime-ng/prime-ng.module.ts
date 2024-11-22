@@ -4,9 +4,9 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { GalleriaModule } from 'primeng/galleria';
-
-import { PasswordModule } from 'primeng/password'; // Si deseas usar Password de PrimeNG
-
+import { PasswordModule } from 'primeng/password';
+import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog'; // Asegúrate de importar DialogService
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   imports: [
     ButtonModule,
@@ -14,7 +14,9 @@ import { PasswordModule } from 'primeng/password'; // Si deseas usar Password de
     InputTextModule,
     DropdownModule,
     GalleriaModule,
-    PasswordModule
+    PasswordModule,
+    DialogModule,
+    DynamicDialogModule,
   ],
   exports: [
     ButtonModule,
@@ -22,7 +24,10 @@ import { PasswordModule } from 'primeng/password'; // Si deseas usar Password de
     InputTextModule,
     DropdownModule,
     GalleriaModule,
-    PasswordModule
-  ]
+    PasswordModule,
+    DialogModule,
+    DynamicDialogModule,
+  ],
+  providers: [DialogService],  // Agrega DialogService aquí
 })
 export class PrimeNgModule {}

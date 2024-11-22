@@ -3,6 +3,8 @@ import { lastValueFrom } from 'rxjs';
 import { Events } from 'src/app/models/tournaments';
 import { HomeService } from 'src/app/services/home.service';
 import { Table } from 'primeng/table';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -17,7 +19,7 @@ export class AdminComponent {
   // Valor del filtro que se muestra en el input
   searchText: string = '';
 
-  constructor(private homeService: HomeService){}
+  constructor(private homeService: HomeService, private dialogService: DialogService){}
 
   ngOnInit(): void {
     this.getTournaments();
@@ -52,6 +54,15 @@ export class AdminComponent {
   onFilterGlobal(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.dt1.filterGlobal(input.value, 'contains');
+  }
+
+  showDialog() {
+    this.dialogService.open(DialogComponent, {
+      header: 'Título del Diálogo',
+      width: '50%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      baseZIndex: 10000,
+    });
   }
 
 }

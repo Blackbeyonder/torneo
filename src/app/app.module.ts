@@ -15,6 +15,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { DetailComponent } from './presentation/pages/detail/detail.component';
 import { LoginComponent } from './presentation/pages/login/login.component';
 import { AdminComponent } from './presentation/pages/admin/admin.component';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AdminComponent } from './presentation/pages/admin/admin.component';
     DetailComponent,
     LoginComponent,
     AdminComponent,
+    DialogComponent,
     
   ],
   imports: [

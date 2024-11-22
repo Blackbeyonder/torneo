@@ -1,6 +1,6 @@
 <div class="flex flex-row justify-content-center pt-5">
     <div class="w-full md:w-10 shadow-2 border-round py-3">
-        <div class="mb-2 pl-4"><p-button label="Crear" severity="success"></p-button></div>
+        <div class="mb-2 pl-4"><p-button label="Crear" severity="success" (click)="showDialog()"></p-button></div>
         <p-table #dt1 dataKey="id" [value]="tournaments.rts" [tableStyle]="{ 'width': '100%' }" [scrollable]="true"
             scrollHeight="30rem" [globalFilterFields]="['name', 'date', 'ubication', 'Participantes']"
             [responsiveLayout]="'scroll'" [showCurrentPageReport]="true" [rows]="5" [paginator]="false"
@@ -55,3 +55,4 @@
         </p-table>
     </div>
 </div>
+

@@ -1,0 +1,17 @@
+
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Nombre</label>
+        <input id="name" [(ngModel)]="name" pInputText />
+      </div>
+      <div class="p-field">
+        <label for="date">Fecha</label>
+        <input id="date" [(ngModel)]="date" pInputText />
+      </div>
+      <div class="p-field">
+        <label for="location">Ubicación</label>
+        <input id="location" [(ngModel)]="location" pInputText />
+      </div>
+      <button pButton label="Cerrar" (click)="closeDialog()" severity="danger"></button>
+    </div>
+  
