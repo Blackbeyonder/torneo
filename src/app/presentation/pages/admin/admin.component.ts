@@ -5,6 +5,10 @@ import { HomeService } from 'src/app/services/home.service';
 import { Table } from 'primeng/table';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
+import { Torneos } from 'src/app/models/torneos';
+import { ApiResponse } from 'src/app/models/apiResponse';
+import { Torneo } from 'src/app/models/torneo';
+import { getTournaments } from 'src/app/utils/Utils';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -14,7 +18,7 @@ export class AdminComponent {
 
 
 
-  tournaments: Events = { rts: [], pelea: [] };
+  tournaments: Torneos ={pelea:[],rts:[]}; 
   @ViewChild('dt1') dt1!: Table;
   // Valor del filtro que se muestra en el input
   searchText: string = '';
@@ -22,7 +26,7 @@ export class AdminComponent {
   constructor(private homeService: HomeService, private dialogService: DialogService){}
 
   ngOnInit(): void {
-    this.getTournaments();
+    this.setTournaments();
    
    
    
@@ -35,20 +39,8 @@ export class AdminComponent {
     }
   }
 
-  async getTournaments(): Promise<void> {
-    // try {
-    //   // Usamos lastValueFrom directamente en la asignación de this.users
-    //   let response: Events = await lastValueFrom(this.homeService.getTournaments());
-    //   // Asignamos los datos recibidos a `tournaments`
-    //   this.tournaments = {
-    //     rts: response.rts || [], // Si `rts` no existe, se asigna un array vacío
-    //     pelea: response.pelea || [] // Lo mismo para `Pelea`
-    //   };
-    
-    // } catch (error) {
-    //   this.tournaments = { rts: [], pelea: [] }; // Estructura válida
-    //   console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
-    // } 
+  async setTournaments(): Promise<void> {
+    this.tournaments = await getTournaments(this.homeService); 
   }
 
   onFilterGlobal(event: Event): void {

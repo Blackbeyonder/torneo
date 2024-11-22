@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Torneos } from 'src/app/models/torneos';
 import { ApiResponse } from 'src/app/models/apiResponse';
 import { Torneo } from 'src/app/models/torneo';
+import { getTournaments } from 'src/app/utils/Utils';
 
 @Component({
   selector: 'app-home',
@@ -91,7 +92,7 @@ export class HomeComponent {
   ngOnInit(): void {
     // this.getUsers(); // Cargar usuarios al iniciar
     this.getBanners();
-    this.getTournaments();
+    this.setTournaments();
    
    
   }
@@ -109,22 +110,8 @@ async getBanners(): Promise<void> {
   } 
 }
 
-async getTournaments(): Promise<void> {
-  try {
-    // Usamos lastValueFrom directamente en la asignación de this.tournaments
-    const response: ApiResponse<{ rts: Torneo[], pelea: Torneo[] }> = await lastValueFrom(this.homeService.getTournaments());
-    
-    // Asignamos los datos recibidos a `this.tournaments`
-    this.tournaments = {
-      rts: response.data.rts || [],  // Si `rts` no existe, se asigna un array vacío
-      pelea: response.data.pelea || []  // Lo mismo para `pelea`
-    };
-    
-  } catch (error) {
-    // Si ocurre un error, asignamos valores predeterminados vacíos a `tournaments`
-    this.tournaments = { rts: [], pelea: [] };
-    console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
-  } 
+async setTournaments(): Promise<void> {
+  this.tournaments = await getTournaments(this.homeService); 
 }
 
 
