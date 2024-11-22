@@ -96,17 +96,7 @@ export class HomeComponent {
    
   }
 
-// Método para obtener usuarios usando lastValueFrom en una sola línea
-async getUsers(): Promise<void> {
-  try {
-    // Usamos lastValueFrom directamente en la asignación de this.users
-    this.users = await lastValueFrom(this.userService.getUsers()); // Convertimos Observable a Promesa y esperamos
-    
-  } catch (error) {
-    this.users=[];
-    console.error('Error al obtener usuarios:', error);  // Manejar el error si ocurre
-  } 
-}
+
 
 async getBanners(): Promise<void> {
   try {

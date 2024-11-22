@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
+import { Login } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,18 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   // Obtener lista de usuarios
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.endpoint);
+  // getlogin(): Observable<any[]> {
+  //   return this.http.get<any[]>(this.endpoint);
+  // }
+
+  getlogin(username: string, password: string): Observable<Login> {
+    const body = {
+      name: username,
+      pass: password
+    };
+  
+    return this.http.post<Login>(environment.apiUrl + "users/login", body);
   }
+  
 
 }
