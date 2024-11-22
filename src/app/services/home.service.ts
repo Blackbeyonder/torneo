@@ -8,7 +8,7 @@ import { Events } from '../models/tournaments';
 })
 export class HomeService {
 
-
+  
   constructor(private http: HttpClient) { }
 
     // Obtener lista de usuarios
