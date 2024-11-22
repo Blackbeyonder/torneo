@@ -61,8 +61,6 @@ export class DetailComponent {
 
   }
 
-  redirectTo(Where: string) {
 
-  }
 
 }
