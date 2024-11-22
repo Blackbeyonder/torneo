@@ -7,6 +7,8 @@ import { GalleriaModule } from 'primeng/galleria';
 import { PasswordModule } from 'primeng/password';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog'; // Asegúrate de importar DialogService
 import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+
 @NgModule({
   imports: [
     ButtonModule,
@@ -17,6 +19,7 @@ import { DialogModule } from 'primeng/dialog';
     PasswordModule,
     DialogModule,
     DynamicDialogModule,
+    CalendarModule
   ],
   exports: [
     ButtonModule,
@@ -27,6 +30,7 @@ import { DialogModule } from 'primeng/dialog';
     PasswordModule,
     DialogModule,
     DynamicDialogModule,
+    CalendarModule
   ],
   providers: [DialogService],  // Agrega DialogService aquí
 })

@@ -1,17 +1,27 @@
-
-    <div class="p-fluid">
-      <div class="p-field">
-        <label for="name">Nombre</label>
-        <input id="name" [(ngModel)]="name" pInputText />
-      </div>
-      <div class="p-field">
-        <label for="date">Fecha</label>
-        <input id="date" [(ngModel)]="date" pInputText />
-      </div>
-      <div class="p-field">
-        <label for="location">Ubicación</label>
-        <input id="location" [(ngModel)]="location" pInputText />
-      </div>
-      <button pButton label="Cerrar" (click)="closeDialog()" severity="danger"></button>
+<div class="flex flex-wrap gap-4">
+    <div class="w-full ">
+      <label for="name" class="block">Nombre</label>
+      <input id="name" [(ngModel)]="name" class="p-inputtext w-full" />
     </div>
+  
+    <div class="w-full ">
+      <label for="date" class="block">Fecha</label>
+      <p-calendar [(ngModel)]="date" appendTo="body" class="w-full"></p-calendar>
+    </div>
+  
+    <div class="w-full ">
+      <label for="location" class="block">Ubicación</label>
+      <input id="location" [(ngModel)]="location" class="p-inputtext w-full" />
+    </div>
+  
+    <div class="w-full ">
+      <label for="urlImg" class="block">Url imagen</label>
+      <input id="urlImg" [(ngModel)]="urlImg" class="p-inputtext w-full" />
+    </div>
+  
+    <div class="w-full flex gap-2">
+        <div><p-button label="Guardar" severity="success"></p-button></div>
+        <div><p-button label="Borrar" severity="danger" (click)="closeDialog()"></p-button></div>
+    </div>
+  </div>
   

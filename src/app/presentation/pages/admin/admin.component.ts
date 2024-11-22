@@ -56,12 +56,16 @@ export class AdminComponent {
     this.dt1.filterGlobal(input.value, 'contains');
   }
 
-  showDialog() {
+  showDialog(isEdit: boolean, item:any={}) {
     this.dialogService.open(DialogComponent, {
-      header: 'Título del Diálogo',
-      width: '50%',
+      header: isEdit ? 'Editar Torneo' : 'Crear Torneo',
+      width: '70%',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       baseZIndex: 10000,
+      data: {
+        isEdit,   
+        item:item  
+      }
     });
   }
 
