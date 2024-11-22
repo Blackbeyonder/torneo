@@ -21,6 +21,7 @@ export class DialogComponent {
   name: string = '';
   location: string = '';
   urlImg: string = '';
+  participantes: string = '';
 
   isEdit: boolean = false;
   item: any = {}; // Para almacenar los datos pasados
@@ -50,6 +51,7 @@ export class DialogComponent {
       this.date = this.item.date || '';
       this.location = this.item.location || '';
       this.urlImg = this.item.urlImg || '';
+      this.participantes = this.item.participants || '';
     }
   }
 

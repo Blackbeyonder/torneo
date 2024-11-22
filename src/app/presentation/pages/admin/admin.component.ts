@@ -72,15 +72,16 @@ export class AdminComponent {
 
 
 
-  showDialog(isEdit: boolean, item: any = {}) {
+  showDialog(params: { isEdit: boolean, item?: any, category: string }) {
     this.dialogService.open(DialogComponent, {
-      header: isEdit ? 'Editar Torneo' : 'Crear Torneo',
+      header: params.isEdit ? 'Editar Torneo' : 'Crear Torneo',
       width: '70%',
       contentStyle: { 'max-height': '500px', overflow: 'auto' },
       baseZIndex: 10000,
       data: {
-        isEdit,
-        item: item
+        isEdit: params.isEdit,
+        item: params.item,
+        category: params.category,
       }
     });
   }
