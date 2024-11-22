@@ -6,6 +6,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { HomeService } from 'src/app/services/home.service';
 import { Events } from 'src/app/models/tournaments';
 import { Router } from '@angular/router';
+import { Torneos } from 'src/app/models/torneos';
+import { ApiResponse } from 'src/app/models/apiResponse';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +19,11 @@ export class HomeComponent {
   users: any[] = []; // Lista de usuarios
   myForm: FormGroup;
 
-  images: any[] =[];
+  images: string[] =[];
 
-  tournaments: Events = { rts: [], pelea: [] };
+
+  tournaments: Torneos ={pelea:[],rts:[]}; 
+  apiResponse: ApiResponse = {data:{pelea:[],rts:[]},message:"" };
 
 
     customOptions: OwlOptions = {
@@ -83,7 +87,7 @@ export class HomeComponent {
   } 
 
   ngOnInit(): void {
-    this.getUsers(); // Cargar usuarios al iniciar
+    // this.getUsers(); // Cargar usuarios al iniciar
     this.getBanners();
     this.getTournaments();
    
@@ -116,11 +120,11 @@ async getBanners(): Promise<void> {
 async getTournaments(): Promise<void> {
   try {
     // Usamos lastValueFrom directamente en la asignación de this.users
-    let response: Events = await lastValueFrom(this.homeService.getTournaments());
+    let response: ApiResponse = await lastValueFrom(this.homeService.getTournaments());
     // Asignamos los datos recibidos a `tournaments`
     this.tournaments = {
-      rts: response.rts || [], // Si `rts` no existe, se asigna un array vacío
-      pelea: response.pelea || [] // Lo mismo para `Pelea`
+      rts: response.data.rts || [], // Si `rts` no existe, se asigna un array vacío
+      pelea: response.data.pelea || [] // Lo mismo para `Pelea`
     };
   
   } catch (error) {

@@ -36,19 +36,19 @@ export class AdminComponent {
   }
 
   async getTournaments(): Promise<void> {
-    try {
-      // Usamos lastValueFrom directamente en la asignación de this.users
-      let response: Events = await lastValueFrom(this.homeService.getTournaments());
-      // Asignamos los datos recibidos a `tournaments`
-      this.tournaments = {
-        rts: response.rts || [], // Si `rts` no existe, se asigna un array vacío
-        pelea: response.pelea || [] // Lo mismo para `Pelea`
-      };
+    // try {
+    //   // Usamos lastValueFrom directamente en la asignación de this.users
+    //   let response: Events = await lastValueFrom(this.homeService.getTournaments());
+    //   // Asignamos los datos recibidos a `tournaments`
+    //   this.tournaments = {
+    //     rts: response.rts || [], // Si `rts` no existe, se asigna un array vacío
+    //     pelea: response.pelea || [] // Lo mismo para `Pelea`
+    //   };
     
-    } catch (error) {
-      this.tournaments = { rts: [], pelea: [] }; // Estructura válida
-      console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
-    } 
+    // } catch (error) {
+    //   this.tournaments = { rts: [], pelea: [] }; // Estructura válida
+    //   console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
+    // } 
   }
 
   onFilterGlobal(event: Event): void {
