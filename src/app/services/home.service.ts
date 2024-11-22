@@ -19,11 +19,8 @@ export class HomeService {
     }
 
     getTournaments(): Observable<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>> {
-      return this.http.get<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>>(environment.apiUrl+"all");
+      return this.http.get<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>>(environment.apiUrl+"torneo/all");
     }
 
-    // getTournaments(): Observable<rts: Torneo[]; pelea: Torneo[]> {
-    //   return this.http.get<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>>(environment.apiUrl+"all");
-    //   // return this.http.get<ApiResponse>();
-    // }
+ 
 }

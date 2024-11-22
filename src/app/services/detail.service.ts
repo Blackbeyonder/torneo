@@ -15,7 +15,7 @@ export class DetailService {
 
 
   getDetail(category: string, id: number): Observable<ApiResponse<Torneo>> {
-    return this.http.get<ApiResponse<Torneo>>(`${environment.apiUrl}${category}/${id}`);
+    return this.http.get<ApiResponse<Torneo>>(`${environment.apiUrl}torneo/${category}/${id}`);
   }
   
 }
