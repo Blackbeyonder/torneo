@@ -10,14 +10,9 @@ export class HeaderComponent {
   constructor(private router: Router) { }
 
   goToPage(Where: string): void {
-    if(Where=="login"){
 
       Utils.redirectTo(this.router, '/'+Where); // Redirige a "/new-page"
-    }else{
-
-      Utils.redirectTo(this.router, '/'+Where); // Redirige a "/new-page"
-
-    }
+   
   }
 
   
