@@ -37,8 +37,10 @@
                     <td>{{ item.ubication }}</td>
                     <td>
                         <ul>
-                            <li *ngFor="let participant of item.Participantes">{{ participant }}</li>
-                        </ul>
+                            <li *ngFor="let participante of item.participantes.split(',')">
+                              {{ participante }}
+                            </li>
+                          </ul>
                     </td>
                     <td>
                         <img [src]="item.img" alt="" class="w-10rem h-5rem">
@@ -98,8 +100,10 @@
                     <td>{{ item.ubication }}</td>
                     <td>
                         <ul>
-                            <li *ngFor="let participant of item.Participantes">{{ participant }}</li>
-                        </ul>
+                            <li *ngFor="let participante of item.participantes.split(',')">
+                              {{ participante }}
+                            </li>
+                          </ul>
                     </td>
                     <td>
                         <img [src]="item.img" alt="" class="w-10rem h-5rem">

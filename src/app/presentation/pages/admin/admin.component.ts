@@ -26,6 +26,8 @@ export class AdminComponent {
   searchText: string = '';
   searchText2: string = '';
 
+  participantes:string[]=[];
+
   constructor(private homeService: HomeService, private dialogService: DialogService, private router: Router) { }
 
   ngOnInit(): void {
@@ -48,6 +50,8 @@ export class AdminComponent {
 
   async setTournaments(): Promise<void> {
     this.tournaments = await getTournaments(this.homeService);
+    console.log(this.tournaments);
+    
   }
 
   onFilterGlobal(table: number, event: Event): void {
