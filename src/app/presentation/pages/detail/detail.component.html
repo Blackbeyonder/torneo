@@ -3,32 +3,32 @@
 
 <div class="flex flex-column align-items-center min-h-screen">
     <div class="mt-3 " >
-        <img src="https://bnetcmsus-a.akamaihd.net/cms/blog_header/2g/2G4VZH5TIWJF1602720144046.jpg" alt="" class="w-full">
+        <img [src]="info.img" alt="" class="w-full">
     </div>
 
-    <div class="flex flex-column mt-3">
+    <div class="flex flex-column my-3 px-2">
         <div class="flex flex-row mb-2">
             <div class="font-bold mr-4 text-xl">Name:</div>
-            <div class=" text-xl">Starcraft</div>
+            <div class=" text-xl">{{info.name}}</div>
         </div>
 
         <div class="flex flex-row mb-2">
             <div class="font-bold mr-4 text-xl">Fecha:</div>
-            <div class=" text-xl">19/11/24</div>
+            <div class=" text-xl">{{info.date}}</div>
         </div>
         
 
         <div class="flex flex-row mb-2">
             <div class="font-bold mr-4 text-xl">Ubicación:</div>
-            <div class=" text-xl">CDMX</div>
+            <div class=" text-xl">{{info.ubication}}</div>
         </div>
 
         <div class="flex flex-column mb-2">
             <div class="font-bold mr-4 text-xl mb-2">Participantes:</div>
-            <div class=" text-xl ">-kanor</div>
+            <div class=" text-xl " *ngFor="let participant of participantes">-{{participant}}</div>
         </div>
 
-        <div class="flex flex-row">
+        <div class="flex flex-row ">
             <p-button label="Editar" [outlined]="true" class="mr-3"></p-button>
             <p-button label="Borrar" [outlined]="true" severity="danger"></p-button>
         </div>

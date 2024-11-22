@@ -8,6 +8,7 @@ import { Events } from 'src/app/models/tournaments';
 import { Router } from '@angular/router';
 import { Torneos } from 'src/app/models/torneos';
 import { ApiResponse } from 'src/app/models/apiResponse';
+import { Torneo } from 'src/app/models/torneo';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomeComponent {
 
 
   tournaments: Torneos ={pelea:[],rts:[]}; 
-  apiResponse: ApiResponse = {data:{pelea:[],rts:[]},message:"" };
+  rtsTorneos: Torneo[] = [];
+  peleaTorneos: Torneo[] = [];
 
 
     customOptions: OwlOptions = {
@@ -119,16 +121,18 @@ async getBanners(): Promise<void> {
 
 async getTournaments(): Promise<void> {
   try {
-    // Usamos lastValueFrom directamente en la asignación de this.users
-    let response: ApiResponse = await lastValueFrom(this.homeService.getTournaments());
-    // Asignamos los datos recibidos a `tournaments`
+    // Usamos lastValueFrom directamente en la asignación de this.tournaments
+    const response: ApiResponse<{ rts: Torneo[], pelea: Torneo[] }> = await lastValueFrom(this.homeService.getTournaments());
+    
+    // Asignamos los datos recibidos a `this.tournaments`
     this.tournaments = {
-      rts: response.data.rts || [], // Si `rts` no existe, se asigna un array vacío
-      pelea: response.data.pelea || [] // Lo mismo para `Pelea`
+      rts: response.data.rts || [],  // Si `rts` no existe, se asigna un array vacío
+      pelea: response.data.pelea || []  // Lo mismo para `pelea`
     };
-  
+    
   } catch (error) {
-    this.tournaments = { rts: [], pelea: [] }; // Estructura válida
+    // Si ocurre un error, asignamos valores predeterminados vacíos a `tournaments`
+    this.tournaments = { rts: [], pelea: [] };
     console.error('Error al obtener tournaments:', error);  // Manejar el error si ocurre
   } 
 }

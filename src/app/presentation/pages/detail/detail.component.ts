@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import { ApiResponse } from 'src/app/models/apiResponse';
+import { Torneo } from 'src/app/models/torneo';
+import { DetailService } from 'src/app/services/detail.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,19 +11,53 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent {
-  category: string="";
-  id: string="";
-  constructor(private route: ActivatedRoute){}
+  category: string = "";
+  id: number = 0;
+  info: Torneo = new Torneo();
+  participantes:string[]=[];
+
+  constructor(private route: ActivatedRoute, private detailService: DetailService) { }
 
   ngOnInit(): void {
     // Obtener el parámetro 'category' directamente usando snapshot
     this.category = this.route.snapshot.paramMap.get('category') || 'defaultCategory';
-    this.id = this.route.snapshot.paramMap.get('id') || 'defaultId';
-    console.log('recibida:', this.category, this.id);
+    this.id = Number(this.route.snapshot.paramMap.get('id')) || 0;
+    if (this.category != "defaultCategory" && this.id != 0) {
+      this.getInfo();
+
+    }
   }
 
-  redirectTo(Where:string){
-    
+  async getInfo() {
+    let newCategoty: string = ""
+    if (this.category == "pelea") {
+      newCategoty = "torneopelea";
+    }
+
+    if (this.category == "rts") {
+      newCategoty = "torneorts";
+    }
+
+    try {
+      let response: ApiResponse<Torneo> = await lastValueFrom(this.detailService.getDetail(newCategoty, this.id));
+      if (response.message && response.message == "success") {
+        this.info = response.data;
+        this.participantes = this.info && this.info.participantes ? this.info.participantes.split(',').map(item => item.trim()):[];
+        
+
+      }
+
+    } catch (error) {
+      console.log(error);
+
+
+    }
+
+
+  }
+
+  redirectTo(Where: string) {
+
   }
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { ApiResponse } from '../models/apiResponse';
+import { Torneo } from '../models/torneo';
 import { Events } from '../models/tournaments';
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,12 @@ export class HomeService {
       return this.http.get<string[]>('/assets/BannerImages.json');
     }
 
-    getTournaments(): Observable<ApiResponse> {
-      return this.http.get<ApiResponse>(environment.apiUrl+"all");
+    getTournaments(): Observable<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>> {
+      return this.http.get<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>>(environment.apiUrl+"all");
     }
+
+    // getTournaments(): Observable<rts: Torneo[]; pelea: Torneo[]> {
+    //   return this.http.get<ApiResponse<{ rts: Torneo[]; pelea: Torneo[] }>>(environment.apiUrl+"all");
+    //   // return this.http.get<ApiResponse>();
+    // }
 }
