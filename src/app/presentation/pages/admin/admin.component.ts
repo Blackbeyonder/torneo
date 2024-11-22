@@ -10,6 +10,7 @@ import { ApiResponse } from 'src/app/models/apiResponse';
 import { Torneo } from 'src/app/models/torneo';
 import { getTournaments, Utils } from 'src/app/utils/Utils';
 import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -28,7 +29,7 @@ export class AdminComponent {
 
   participantes:string[]=[];
 
-  constructor(private homeService: HomeService, private dialogService: DialogService, private router: Router) { }
+  constructor(private homeService: HomeService, private dialogService: DialogService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.setTournaments();
@@ -90,4 +91,17 @@ export class AdminComponent {
     Utils.redirectTo(this.router, "/");
   }
 
+  confirm(event: Event) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Quieres borrarlo?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'Lo haz rechazado' });
+        }
+    });
+}
 }

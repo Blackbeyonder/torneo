@@ -9,7 +9,9 @@ import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog'; // A
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
 import { ChipsModule } from 'primeng/chips';
-
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   imports: [
     ButtonModule,
@@ -21,7 +23,9 @@ import { ChipsModule } from 'primeng/chips';
     DialogModule,
     DynamicDialogModule,
     CalendarModule,
-    ChipsModule
+    ChipsModule,
+    ConfirmPopupModule,
+    ToastModule
   ],
   exports: [
     ButtonModule,
@@ -33,8 +37,10 @@ import { ChipsModule } from 'primeng/chips';
     DialogModule,
     DynamicDialogModule,
     CalendarModule,
-    ChipsModule
+    ChipsModule,
+    ConfirmPopupModule,
+    ToastModule
   ],
-  providers: [DialogService],  // Agrega DialogService aquí
+  providers: [DialogService, ConfirmationService, MessageService],  // Agrega DialogService aquí
 })
 export class PrimeNgModule {}
