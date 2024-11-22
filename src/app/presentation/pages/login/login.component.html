@@ -29,3 +29,10 @@
         </form>
     </div>
 </div>
+
+<p-dialog header="¡Error de Credenciales!" [(visible)]="displayErrorDialog" [modal]="true" [closable]="false" [responsive]="true" [style]="{width: '300px'}">
+    <p>Las credenciales que has ingresado no coinciden. Por favor, intenta nuevamente.</p>
+    <p-footer>
+      <button pButton label="Cerrar" icon="pi pi-times" (click)="displayErrorDialog = false"></button>
+    </p-footer>
+  </p-dialog>
