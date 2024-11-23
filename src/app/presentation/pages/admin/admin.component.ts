@@ -129,7 +129,7 @@ export class AdminComponent {
           this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
 
           setTimeout(() => {
-            window.location.reload();
+            this.router.navigate([this.router.url], { replaceUrl: true });
           }, 500);
         }
 
