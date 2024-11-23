@@ -1,3 +1,5 @@
+
+# Practice
 # Instrucciones para Ejecutar el Proyecto
 
 Sigue estos pasos para instalar las dependencias necesarias y ejecutar el proyecto:
@@ -18,14 +20,6 @@ Sigue estos pasos para instalar las dependencias necesarias y ejecutar el proyec
 - **Usuario:** `pepe`  
 - **Contraseña:** `elpepe`
 
-
-# Practice
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
