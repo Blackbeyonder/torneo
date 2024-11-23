@@ -64,38 +64,62 @@ export class DialogComponent {
 
       this.myForm.setValue(formData);
     } else {
+      debugger
 
-      const savedData = localStorage.getItem('formData');
-      if (savedData) {
-        // Convertimos los datos del string de vuelta a un objeto
-        const formData = JSON.parse(savedData);
-  
-        // Convertir la fecha a un objeto Date
-        if (formData.date) {
-          formData.date = new Date(formData.date); // Convertimos el string de fecha a Date
+      if (this.config.data.category == "torneorts") {
+
+        const savedData = localStorage.getItem('formDataRTS');
+        if (savedData) {
+          // Convertimos los datos del string de vuelta a un objeto
+          const formData = JSON.parse(savedData);
+
+          // Convertir la fecha a un objeto Date
+          if (formData.date) {
+            formData.date = new Date(formData.date); // Convertimos el string de fecha a Date
+          }
+
+          // Cargar los valores en el formulario
+          this.myForm.setValue(formData);
+          console.log('Formulario cargado desde localStorage:', formData);
         }
-  
-        // Cargar los valores en el formulario
-        this.myForm.setValue(formData);
-        console.log('Formulario cargado desde localStorage:', formData);
-      } else {
-        console.log('No hay datos guardados en localStorage');
+      }
+
+      if (this.config.data.category == "torneopelea") {
+
+        const savedData = localStorage.getItem('formDataPelea');
+        if (savedData) {
+          // Convertimos los datos del string de vuelta a un objeto
+          const formData = JSON.parse(savedData);
+
+          // Convertir la fecha a un objeto Date
+          if (formData.date) {
+            formData.date = new Date(formData.date); // Convertimos el string de fecha a Date
+          }
+
+          // Cargar los valores en el formulario
+          this.myForm.setValue(formData);
+        }
       }
 
     }
 
     // Detectar el evento de cierre del diálogo
     this.ref.onClose.subscribe(() => {
-     
+
       if (!this.isSaved) {
-        console.log('El diálogo ha sido cerrado con la X');
         // Guardar los valores del formulario en localStorage
         const formData = this.myForm.value;
-        localStorage.setItem('formData', JSON.stringify(formData)); // Convertimos a string
-        console.log('Formulario guardado en localStorage:', formData);
+        if (this.config.data.category == "torneorts") {
+
+          localStorage.setItem('formDataRTS', JSON.stringify(formData)); // Convertimos a string
+        }
+
+        if (this.config.data.category == "torneopelea") {
+
+          localStorage.setItem('formDataPelea', JSON.stringify(formData)); // Convertimos a string
+        }
 
       }
-      // Aquí puedes agregar más lógica para diferenciar si fue con la X o el botón.
     });
   }
 
@@ -104,26 +128,17 @@ export class DialogComponent {
   }
 
   async saveTournament() {
-    let newCategoty = "";
     if (this.myForm.valid) {
       // Si el formulario es válido, procesamos los datos
       const formData = this.myForm.value;
       // console.log("formData", formData);
-      if (this.config.data.category == "rts") {
-        newCategoty = "torneorts"
 
-      }
-
-      if (this.config.data.category == "pelea") {
-        newCategoty = "torneopelea"
-
-      }
 
       if (this.isEdit) {
         // Lógica para editar el torneo
         let typeID = this.item.idtorneoRts ? this.item.idtorneoRts : this.item.idtorneopelea
         let response: any = await lastValueFrom(this.adminService.putTorneo(
-          newCategoty,
+          this.config.data.category,
           {
             "name": formData.name,
             "date": Utils.convertDateToDMY(formData.date),
@@ -147,7 +162,7 @@ export class DialogComponent {
       } else {
 
         let response: any = await lastValueFrom(this.adminService.postTorneo(
-          newCategoty,
+          this.config.data.category,
           {
             "name": formData.name,
             "date": Utils.convertDateToDMY(formData.date),
@@ -159,7 +174,14 @@ export class DialogComponent {
         ));
 
         if (response.message == "success") {
-          localStorage.removeItem('formData');
+
+          if (this.config.data.category == "torneorts") {
+
+            localStorage.removeItem('formDataRTS');
+          } else {
+            localStorage.removeItem('formDataPelea');
+
+          }
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
           console.log('Creating Tournament:', formData);
           setTimeout(() => {
@@ -182,9 +204,6 @@ export class DialogComponent {
     if (this.myForm.valid) {
       // Si el formulario es válido, guardar
       this.saveTournament();
-    } else {
-      // Si el formulario es inválido, resaltar los errores
-      console.log('Formulario inválido');
     }
   }
 
