@@ -63,7 +63,7 @@ export class DialogComponent {
 
       this.myForm.setValue(formData);
     } else {
-      debugger
+      
 
       if (this.config.data.category == "torneorts") {
 
