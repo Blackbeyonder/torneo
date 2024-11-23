@@ -4,7 +4,7 @@ Sigue estos pasos para instalar las dependencias necesarias y ejecutar el proyec
 
 ## Requisitos Previos
 
-- **Node.js 20.11.1**  
+- **Node.js 20.11.1 (esta bien mientras sea 20)**  
   Si no tienes Node.js instalado, descárgalo desde [https://nodejs.org](https://nodejs.org).
 
 ## Instalación
@@ -15,8 +15,8 @@ Sigue estos pasos para instalar las dependencias necesarias y ejecutar el proyec
 
 ## Credenciales de Prueba
 
-- **Usuario:** `algo`  
-- **Contraseña:** `sdff`
+- **Usuario:** `pepe`  
+- **Contraseña:** `elpepe`
 
 
 # Practice
