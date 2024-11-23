@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { ApiResponse } from 'src/app/models/apiResponse';
 import { Torneo } from 'src/app/models/torneo';
 import { DetailService } from 'src/app/services/detail.service';
+import { Utils } from 'src/app/utils/Utils';
 
 @Component({
   selector: 'app-detail',
@@ -58,6 +59,14 @@ export class DetailComponent {
 
     }
 
+
+  }
+
+  itemToModify(){
+    console.log(this.info);
+    localStorage.setItem('itemToModify', JSON.stringify(this.info));
+    Utils.redirectTo(this.router1,"admin")
+    
 
   }
 

@@ -41,6 +41,31 @@ export class AdminComponent {
 
   ngAfterViewInit(): void {
     // Aplica el filtro al inicializar la vista
+    const item = localStorage.getItem('itemToModify');
+
+    if (item !== null) {
+      const itemToModify = JSON.parse(item); // Convertir de JSON a objeto
+      // Verificar si existe la propiedad "participantes"
+      if ("idtorneoRts" in itemToModify) {
+        this.searchText = itemToModify.name;
+        window.scrollTo({
+          top: 0, // Posición a la que deseas hacer scroll
+          behavior: 'smooth' // Para un desplazamiento suave
+        });
+      } else {
+
+        this.searchText2 = itemToModify.name;
+        window.scrollTo({
+          top: document.body.scrollHeight, // Desplazarse hasta el final de la página
+          behavior: 'smooth' 
+        });
+
+      }
+      console.log('Datos obtenidos:', itemToModify);
+      localStorage.removeItem('itemToModify')
+    }
+
+
     if (this.dt1) {
       this.dt1.filterGlobal(this.searchText, 'contains');
     }
@@ -100,17 +125,17 @@ export class AdminComponent {
       message: 'Quieres borrarlo?',
       icon: 'pi pi-exclamation-triangle',
       accept: async () => {
-          let response: any = await lastValueFrom(this.adminService.deleteTorneo(category, id));
-          if(response.message && response.message=="success"){
+        let response: any = await lastValueFrom(this.adminService.deleteTorneo(category, id));
+        if (response.message && response.message == "success") {
 
-             this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
+          this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
 
-             setTimeout(() => {
-              window.location.reload();
-             }, 500);
-          }
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
 
-        
+
       },
       reject: () => {
         this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'Lo haz rechazado' });

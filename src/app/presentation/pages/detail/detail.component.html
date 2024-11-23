@@ -29,8 +29,8 @@
         </div>
 
         <div class="flex flex-row ">
-            <p-button label="Editar" [outlined]="true" class="mr-3"></p-button>
-            <p-button label="Borrar" [outlined]="true" severity="danger"></p-button>
+            <p-button label="Editar" [outlined]="true" class="mr-3" (click)="itemToModify()"></p-button>
+            <p-button label="Borrar" [outlined]="true" severity="danger" (click)="itemToModify()"></p-button>
         </div>
 
     </div>
