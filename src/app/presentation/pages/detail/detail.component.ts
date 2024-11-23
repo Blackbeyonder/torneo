@@ -63,7 +63,6 @@ export class DetailComponent {
   }
 
   itemToModify(){
-    console.log(this.info);
     localStorage.setItem('itemToModify', JSON.stringify(this.info));
     Utils.redirectTo(this.router1,"admin")
     

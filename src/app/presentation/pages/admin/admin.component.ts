@@ -61,7 +61,6 @@ export class AdminComponent {
         });
 
       }
-      console.log('Datos obtenidos:', itemToModify);
       localStorage.removeItem('itemToModify')
     }
 
@@ -77,7 +76,6 @@ export class AdminComponent {
 
   async setTournaments(): Promise<void> {
     this.tournaments = await getTournaments(this.homeService);
-    console.log(this.tournaments);
 
   }
 

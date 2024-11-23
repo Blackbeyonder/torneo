@@ -45,7 +45,6 @@ export class DialogComponent {
 
     // Acceder a los datos enviados al abrir el diálogo desde `this.ref.data`
     const dialogData = this.config.data;
-    // console.log(dialogData);
 
     this.isEdit = dialogData.isEdit;
     this.item = dialogData.item;
@@ -80,7 +79,6 @@ export class DialogComponent {
 
           // Cargar los valores en el formulario
           this.myForm.setValue(formData);
-          console.log('Formulario cargado desde localStorage:', formData);
         }
       }
 
@@ -131,7 +129,6 @@ export class DialogComponent {
     if (this.myForm.valid) {
       // Si el formulario es válido, procesamos los datos
       const formData = this.myForm.value;
-      // console.log("formData", formData);
 
 
       if (this.isEdit) {
@@ -153,7 +150,6 @@ export class DialogComponent {
         if (response.message == "success") {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Actualizado' });
 
-          console.log('Editing Tournament:', formData);
           setTimeout(() => {
             window.location.reload();
           }, 500);
@@ -183,7 +179,7 @@ export class DialogComponent {
 
           }
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
-          console.log('Creating Tournament:', formData);
+         
           setTimeout(() => {
             window.location.reload();
           }, 500);
@@ -194,7 +190,6 @@ export class DialogComponent {
       // Aquí podrías llamar a un servicio para guardar los datos
       this.closeDialog(); // Cerrar el diálogo después de guardar
     } else {
-      console.log('Formulario inválido');
       // Aquí puedes mostrar un mensaje o resaltar los errores
     }
   }

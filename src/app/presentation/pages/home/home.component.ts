@@ -120,15 +120,6 @@ goToDetail(category: string ,id: number): void {
   this.router.navigate([category+'/detalle', id]);  // Navegar pasando el parámetro `id`
 }
 
-  // Función para manejar el envío del formulario
-  onSubmit(): void {
-    if (this.myForm.valid) {
-      console.log('Formulario válido:', this.myForm.value);
-    } else {
-      console.log('Formulario no válido');
-      this.myForm.markAllAsTouched();  // Marca todos los campos como tocados para mostrar los errores
-    }
-  }
 
  
 
