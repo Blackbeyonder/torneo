@@ -1,3 +1,24 @@
+# Instrucciones para Ejecutar el Proyecto
+
+Sigue estos pasos para instalar las dependencias necesarias y ejecutar el proyecto:
+
+## Requisitos Previos
+
+- **Node.js 20.11.1**  
+  Si no tienes Node.js instalado, descárgalo desde [https://nodejs.org](https://nodejs.org).
+
+## Instalación
+
+1. Instala Angular CLI versión 16:
+   ```bash
+   npm install -g @angular/cli@16
+
+## Credenciales de Prueba
+
+- **Usuario:** `algo`  
+- **Contraseña:** `sdff`
+
+
 # Practice
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
