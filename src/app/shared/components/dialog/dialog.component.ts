@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { lastValueFrom } from 'rxjs';
 import { AdminService } from 'src/app/services/admin.service';
@@ -33,7 +34,7 @@ export class DialogComponent {
 
   values: string = "";
 
-  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private fb: FormBuilder, private adminService: AdminService) { }
+  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private fb: FormBuilder, private adminService: AdminService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.today.setHours(0, 0, 0, 0); // Asegurar que la fecha esté limpia
@@ -101,8 +102,12 @@ export class DialogComponent {
         ));
 
         if (response.message == "success") {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Actualizado' });
 
           console.log('Editing Tournament:', formData);
+          setTimeout(() => {
+            window.location.reload();
+           }, 500);
         }
 
       } else {
@@ -120,8 +125,12 @@ export class DialogComponent {
         ));
 
         if (response.message == "success") {
-
+          
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
           console.log('Creating Tournament:', formData);
+          setTimeout(() => {
+            window.location.reload();
+           }, 500);
         }
         // Lógica para crear un nuevo torneo
       }

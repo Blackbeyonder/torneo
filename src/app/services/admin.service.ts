@@ -23,4 +23,10 @@ export class AdminService {
     return this.http.put<any>(environment.apiUrl + "torneo/"+category+"/"+id, params);
   }
   
+
+  deleteTorneo(category:string,  id:number): Observable<any> {
+  
+  
+    return this.http.delete<any>(environment.apiUrl + "torneo/"+category+"/"+id);
+  }
 }

@@ -11,6 +11,7 @@ import { Torneo } from 'src/app/models/torneo';
 import { getTournaments, Utils } from 'src/app/utils/Utils';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -27,9 +28,9 @@ export class AdminComponent {
   searchText: string = '';
   searchText2: string = '';
 
-  participantes:string[]=[];
+  participantes: string[] = [];
 
-  constructor(private homeService: HomeService, private dialogService: DialogService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private homeService: HomeService, private dialogService: DialogService, private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService, private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.setTournaments();
@@ -52,7 +53,7 @@ export class AdminComponent {
   async setTournaments(): Promise<void> {
     this.tournaments = await getTournaments(this.homeService);
     console.log(this.tournaments);
-    
+
   }
 
   onFilterGlobal(table: number, event: Event): void {
@@ -92,17 +93,27 @@ export class AdminComponent {
     Utils.redirectTo(this.router, "/");
   }
 
-  confirm(event: Event) {
+  confirm(id: number, category: string, event: Event) {
     this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Quieres borrarlo?',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
-        },
-        reject: () => {
-            this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'Lo haz rechazado' });
-        }
+      target: event.target as EventTarget,
+      message: 'Quieres borrarlo?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: async () => {
+          let response: any = await lastValueFrom(this.adminService.deleteTorneo(category, id));
+          if(response.message && response.message=="success"){
+
+             this.messageService.add({ severity: 'error', summary: 'Confirmed', detail: 'borrado' });
+
+             setTimeout(() => {
+              window.location.reload();
+             }, 500);
+          }
+
+        
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'info', summary: 'Rejected', detail: 'Lo haz rechazado' });
+      }
     });
-}
+  }
 }

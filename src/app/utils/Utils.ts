@@ -19,7 +19,7 @@ export class Utils {
     const day = date.getDate().toString().padStart(2, '0');  // Aseguramos que tenga dos dígitos
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes es 0-indexed, así que sumamos 1
     const year = date.getFullYear().toString().slice(-2);  // Tomamos los últimos 2 dígitos del año
-    debugger
+    
     // Formato final "día/mes/año"
     return `${day}/${month}/${year}`;
   }
