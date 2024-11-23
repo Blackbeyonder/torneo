@@ -85,6 +85,7 @@ export class AdminComponent {
         category: params.category,
       }
     });
+
   }
 
   cerrarSesion() {

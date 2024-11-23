@@ -33,6 +33,7 @@ export class DialogComponent {
   today: Date = new Date();
 
   values: string = "";
+  isSaved: boolean = false;
 
   constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private fb: FormBuilder, private adminService: AdminService, private messageService: MessageService) { }
 
@@ -44,7 +45,7 @@ export class DialogComponent {
 
     // Acceder a los datos enviados al abrir el diálogo desde `this.ref.data`
     const dialogData = this.config.data;
-    console.log(dialogData);
+    // console.log(dialogData);
 
     this.isEdit = dialogData.isEdit;
     this.item = dialogData.item;
@@ -62,7 +63,40 @@ export class DialogComponent {
       };
 
       this.myForm.setValue(formData);
+    } else {
+
+      const savedData = localStorage.getItem('formData');
+      if (savedData) {
+        // Convertimos los datos del string de vuelta a un objeto
+        const formData = JSON.parse(savedData);
+  
+        // Convertir la fecha a un objeto Date
+        if (formData.date) {
+          formData.date = new Date(formData.date); // Convertimos el string de fecha a Date
+        }
+  
+        // Cargar los valores en el formulario
+        this.myForm.setValue(formData);
+        console.log('Formulario cargado desde localStorage:', formData);
+      } else {
+        console.log('No hay datos guardados en localStorage');
+      }
+
     }
+
+    // Detectar el evento de cierre del diálogo
+    this.ref.onClose.subscribe(() => {
+     
+      if (!this.isSaved) {
+        console.log('El diálogo ha sido cerrado con la X');
+        // Guardar los valores del formulario en localStorage
+        const formData = this.myForm.value;
+        localStorage.setItem('formData', JSON.stringify(formData)); // Convertimos a string
+        console.log('Formulario guardado en localStorage:', formData);
+
+      }
+      // Aquí puedes agregar más lógica para diferenciar si fue con la X o el botón.
+    });
   }
 
   closeDialog() {
@@ -74,7 +108,7 @@ export class DialogComponent {
     if (this.myForm.valid) {
       // Si el formulario es válido, procesamos los datos
       const formData = this.myForm.value;
-      console.log("formData", formData);
+      // console.log("formData", formData);
       if (this.config.data.category == "rts") {
         newCategoty = "torneorts"
 
@@ -107,7 +141,7 @@ export class DialogComponent {
           console.log('Editing Tournament:', formData);
           setTimeout(() => {
             window.location.reload();
-           }, 500);
+          }, 500);
         }
 
       } else {
@@ -125,15 +159,16 @@ export class DialogComponent {
         ));
 
         if (response.message == "success") {
-          
+          localStorage.removeItem('formData');
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
           console.log('Creating Tournament:', formData);
           setTimeout(() => {
             window.location.reload();
-           }, 500);
+          }, 500);
         }
         // Lógica para crear un nuevo torneo
       }
+      this.isSaved = true;
       // Aquí podrías llamar a un servicio para guardar los datos
       this.closeDialog(); // Cerrar el diálogo después de guardar
     } else {
@@ -143,6 +178,7 @@ export class DialogComponent {
   }
 
   onSubmit() {
+    this.myForm.markAllAsTouched();
     if (this.myForm.valid) {
       // Si el formulario es válido, guardar
       this.saveTournament();
@@ -151,4 +187,6 @@ export class DialogComponent {
       console.log('Formulario inválido');
     }
   }
+
+
 }
