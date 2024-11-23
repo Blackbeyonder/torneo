@@ -63,7 +63,7 @@ export class DialogComponent {
 
       this.myForm.setValue(formData);
     } else {
-      
+
 
       if (this.config.data.category == "torneorts") {
 
@@ -105,18 +105,22 @@ export class DialogComponent {
     this.ref.onClose.subscribe(() => {
 
       if (!this.isSaved) {
-        // Guardar los valores del formulario en localStorage
-        const formData = this.myForm.value;
-        if (this.config.data.category == "torneorts") {
 
-          localStorage.setItem('formDataRTS', JSON.stringify(formData)); // Convertimos a string
+        if (!this.isEdit) {
+
+          // Guardar los valores del formulario en localStorage
+          const formData = this.myForm.value;
+          if (this.config.data.category == "torneorts") {
+
+            localStorage.setItem('formDataRTS', JSON.stringify(formData)); // Convertimos a string
+          }
+
+          if (this.config.data.category == "torneopelea") {
+
+            localStorage.setItem('formDataPelea', JSON.stringify(formData)); // Convertimos a string
+          }
+
         }
-
-        if (this.config.data.category == "torneopelea") {
-
-          localStorage.setItem('formDataPelea', JSON.stringify(formData)); // Convertimos a string
-        }
-
       }
     });
   }
@@ -179,7 +183,7 @@ export class DialogComponent {
 
           }
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
-         
+
           setTimeout(() => {
             window.location.reload();
           }, 500);
