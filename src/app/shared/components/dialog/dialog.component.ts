@@ -156,7 +156,7 @@ export class DialogComponent {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Actualizado' });
 
           setTimeout(() => {
-            this.router.navigate([this.router.url], { replaceUrl: true });
+            window.location.reload()
           }, 500);
         }
 
@@ -186,7 +186,7 @@ export class DialogComponent {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Creado' });
 
           setTimeout(() => {
-            this.router.navigate([this.router.url], { replaceUrl: true });
+            window.location.reload()
           }, 500);
         }
         // Lógica para crear un nuevo torneo
