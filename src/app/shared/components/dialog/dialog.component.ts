@@ -47,13 +47,11 @@ export class DialogComponent {
 
     this.isEdit = dialogData.isEdit;
     this.item = dialogData.item;
-    debugger
 
 
     // Si es una edición, asignamos los valores del objeto `item` a las variables
     if (this.isEdit && this.item) {
 
-      debugger
       const formData = {
         name: this.item.name,
         date: Utils.convertToDate(this.item.date),
