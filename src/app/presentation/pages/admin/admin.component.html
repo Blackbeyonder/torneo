@@ -12,7 +12,7 @@
             <!-- Encabezado con Buscador -->
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between align-items-center">
-                    <h3 class="m-0">Lista de Torneos RTS</h3>
+                    <h3 class="m-0  text-sm  sm:text-sm md:text-md lg:text-xl">Lista de Torneos RTS</h3>
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" [(ngModel)]="searchText" (input)="onFilterGlobal(1,$event)" placeholder="Search keyword" />
@@ -46,7 +46,7 @@
                           </ul>
                     </td>
                     <td>
-                        <img [src]="item.img" alt="" class="w-10rem h-5rem">
+                        <div class="w-8rem"><p-image [src]="item.img" alt="Image" width="100%" [preview]="true"></p-image></div>
                     </td>
 
                     <td>
@@ -84,7 +84,7 @@
             <!-- Encabezado con Buscador -->
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between align-items-center">
-                    <h3 class="m-0">Lista de Torneos Pelea</h3>
+                    <h3 class="m-0 text-sm  sm:text-sm md:text-md lg:text-xl">Lista de Torneos Pelea</h3>
                     <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" [(ngModel)]="searchText2" (input)="onFilterGlobal(2,$event)" placeholder="Search keyword" />
@@ -118,7 +118,7 @@
                           </ul>
                     </td>
                     <td>
-                        <img [src]="item.img" alt="" class="w-10rem h-5rem">
+                        <div class="w-8rem"><p-image [src]="item.img" alt="Image" width="100%" [preview]="true"></p-image></div>
                     </td>
 
                     <td>

@@ -12,6 +12,7 @@ import { ChipsModule } from 'primeng/chips';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ImageModule } from 'primeng/image';
 @NgModule({
   imports: [
     ButtonModule,
@@ -25,7 +26,8 @@ import { ToastModule } from 'primeng/toast';
     CalendarModule,
     ChipsModule,
     ConfirmPopupModule,
-    ToastModule
+    ToastModule,
+    ImageModule
   ],
   exports: [
     ButtonModule,
@@ -39,7 +41,8 @@ import { ToastModule } from 'primeng/toast';
     CalendarModule,
     ChipsModule,
     ConfirmPopupModule,
-    ToastModule
+    ToastModule,
+    ImageModule
   ],
   providers: [DialogService, ConfirmationService, MessageService],  // Agrega DialogService aquí
 })
