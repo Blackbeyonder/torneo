@@ -57,7 +57,7 @@ export class AdminComponent {
         this.searchText2 = itemToModify.name;
         window.scrollTo({
           top: document.body.scrollHeight, // Desplazarse hasta el final de la página
-          behavior: 'smooth' 
+          behavior: 'smooth'
         });
 
       }
