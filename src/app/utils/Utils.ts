@@ -19,9 +19,39 @@ export class Utils {
     const day = date.getDate().toString().padStart(2, '0');  // Aseguramos que tenga dos dígitos
     const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Mes es 0-indexed, así que sumamos 1
     const year = date.getFullYear().toString().slice(-2);  // Tomamos los últimos 2 dígitos del año
-    
+    debugger
     // Formato final "día/mes/año"
     return `${day}/${month}/${year}`;
+  }
+
+  static convertToDate(dateString: string): Date | null {
+    if (!dateString) {
+      return null; // Manejar el caso de entrada inválida
+    }
+
+    try {
+      const [day, month, year] = dateString.split('/').map(Number);
+
+      // Asegúrate de convertir el año a un formato completo
+      const fullYear = year < 100 ? 2000 + year : year;
+
+      // Crea y devuelve la fecha
+      return new Date(fullYear, month - 1, day);
+    } catch (error) {
+      console.error('Error al convertir la fecha:', error);
+      return null;
+    }
+  }
+
+  static convertStringToArray(inputString: string): string[] {
+    if (!inputString) {
+      return []; // Devuelve un array vacío si la entrada es nula o indefinida
+    }
+
+    // Limpia las comillas externas y divide por comas
+    return inputString
+      .split(',') // Divide por la coma
+      .map(item => item.trim()); // Limpia espacios alrededor de cada elemento
   }
   
   

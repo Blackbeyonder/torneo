@@ -16,5 +16,11 @@ export class AdminService {
   
     return this.http.post<any>(environment.apiUrl + "torneo/"+category, params);
   }
+
+  putTorneo(category:string , params:any, id:number): Observable<any> {
+  
+  
+    return this.http.put<any>(environment.apiUrl + "torneo/"+category+"/"+id, params);
+  }
   
 }
